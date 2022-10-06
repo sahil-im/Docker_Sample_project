@@ -104,18 +104,18 @@ router.delete('/:_id', async(req,res) =>
     {
         const id = req.params._id
         const deleteData = await studentSchema.deleteOne({_id:id})
-        if(deleteData.deletedCount == 1)
-        {
-            res.status(200).send({
-                statuscode:true,
-                message:"Data is Delete sucessfull....",
-            })
-        }
-        else
+        if(deleteData.deletedCount == 0)
         {
             res.status(404).send({
                 statuscode:false,
                 message:"Data is Not Found....",
+            })
+        }
+        else
+        {
+            res.status(200).send({
+                statuscode:true,
+                message:"Data is Delete sucessfull....",
             })
         }
         
